@@ -137,12 +137,15 @@
   <script src="https://js.stripe.com/v3"></script>
   <script>
     var stripe = Stripe('pk_test_OtbO9GrVheYEgIEqNKecUuiO004lkrWPyO');
+    var env = 'prod'
+    var successUrl = env === 'prod' ? 'https://ryought.app/shop/success.html' : 'http://localhost:8887/success.html'
+    var cancelUrl = env === 'prod' ? 'https://ryought.app/shop/canceled.html' : 'http://localhost:8887/canceled.html'
     document.getElementById('checkout-button-cd')
       .addEventListener('click', function () {
         stripe.redirectToCheckout({
           items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
-          successUrl: 'http://localhost:8887/success.html',
-          cancelUrl: 'http://localhost:8887/canceled.html',
+          successUrl: successUrl,
+          cancelUrl: cancelUrl,
         })
           .then(function (result) {
             if (result.error) {
@@ -155,8 +158,8 @@
       .addEventListener('click', function () {
         stripe.redirectToCheckout({
           items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
-          successUrl: 'http://localhost:8887/success.html',
-          cancelUrl: 'http://localhost:8887/canceled.html',
+          successUrl: successUrl,
+          cancelUrl: cancelUrl,
         })
           .then(function (result) {
             if (result.error) {
@@ -169,8 +172,8 @@
       .addEventListener('click', function () {
         stripe.redirectToCheckout({
           items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
-          successUrl: 'http://localhost:8887/success.html',
-          cancelUrl: 'http://localhost:8887/canceled.html',
+          successUrl: successUrl,
+          cancelUrl: cancelUrl,
         })
           .then(function (result) {
             if (result.error) {
