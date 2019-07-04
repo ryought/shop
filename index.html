@@ -4,8 +4,182 @@
   <meta charset="utf-8"/>
   <title>shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <!-- Fonts and CSS Reset -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
 </head>
 <body>
-  <h1>shop</h1>
+  <main>
+
+    <section class="section-tertiary">
+      <div class="container container-small">
+        <div class="row">
+          <div class="col col-sm-12 col-xlg-12">
+            <h1>Goppie in the Woods</h1>
+            <p>アイルランドFleadh Competition本選出場に際する渡航費用を支援していただくためにCDの販売を始めました！</p>
+
+          </div>
+        </div>
+
+        <section class="section-secondary">
+          <div class="row">
+            <div class="col-sm-9">
+              <p class="h5">このDuoについて</p>
+              <p>2017年結成</p>
+            </div>
+            <div class="col col-sm-3">
+              <img src="//placehold.it/140x140">
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <section class="section-secondary">
+      <div class="container container-small">
+        <h3>Products</h3>
+        <div class="row">
+          <div class="col col-sm-12 col-lg-12">
+            <div class="card">
+              <h2 class="card-title">オリジナルCD</h2>
+              <div class="row">
+                <div class="col col-sm-3">
+                  <img src="//placehold.it/140x140">
+                </div>
+                <div class="col col-sm-9">
+                  <p>今回のクラウドファンディングに当たってオリジナルで収録したトラックたち！</p>
+                  <p>収録曲: Silver Spear, Danny Ab's, ...</p>
+                  <p>販売形式: mp3</p>
+                </div>
+              </div>
+              <div class="card-actions">
+                <span>1,000円</span>
+                <button
+                  class="button-primary button-large"
+                  id="checkout-button-cd"
+                  role="link"
+                  >
+                  購入
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-sm-12 col-lg-6">
+            <div class="card">
+              <h2 class="card-title">Fleadh特集ムービー</h2>
+              <p>ぬいぐるみYoutuber「パフティ」のカメラマンごっぴが、今回のFleadhの模様を動画にまとめてくれます！</p>
+              <div class="card-actions">
+                <span>2,000円</span>
+                <button
+                  class="button-primary button-large"
+                  id="checkout-button-movie"
+                  role="link"
+                  >
+                  購入
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-sm-12 col-lg-6">
+            <div class="card">
+              <h2 class="card-title">ライブパーティー</h2>
+              <p>都内アイリッシュパブ等で感謝の気持ちを込めてライブパーティーを開きます！食べ放題プラン付きです。</p>
+              <div class="card-actions">
+                <span>5,000円</span>
+                <button
+                  class="button-primary button-large"
+                  id="checkout-button-party"
+                  role="link"
+                  >
+                  購入
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tertiary">
+      <div class="container container-small">
+        <h3>Note</h3>
+        <div class="row">
+          <div class="col col-sm-12 col-xlg-12">
+            <p>お支払いはクレジットカードのみとなります。クレジットカード情報等は本ホームページでは一切保存しておらず、<a href="https://stripe.com/jp">Stripe</a>を介して決済されます。</p>
+            <p>ご購入いただいた商品については、お支払いが確認でき次第、メールにてダウンロードリンクをお送りいたします。またライブパーティーについては、参加希望の方の参加可能日程を調整するリンクをお送りします。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </div>
+    <div id="error-message"></div>
+  </main>
+
+  <footer>
+    <div class="container container-small">
+      <div class="row">
+        <div class="col">
+          <div class="footer-text">
+            <p class="h3">Terms</p>
+            <p>hoge</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="copyright align-center">Goppie in the Woods, Ryo Nakabayashi</p>
+  </footer>
+
+  <script src="https://js.stripe.com/v3"></script>
+  <script>
+    var stripe = Stripe('pk_test_OtbO9GrVheYEgIEqNKecUuiO004lkrWPyO');
+    document.getElementById('checkout-button-cd')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
+          successUrl: 'http://localhost:8887/success.html',
+          cancelUrl: 'http://localhost:8887/canceled.html',
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+    document.getElementById('checkout-button-movie')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
+          successUrl: 'http://localhost:8887/success.html',
+          cancelUrl: 'http://localhost:8887/canceled.html',
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+    document.getElementById('checkout-button-party')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
+          successUrl: 'http://localhost:8887/success.html',
+          cancelUrl: 'http://localhost:8887/canceled.html',
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+  </script>
+
 </body>
 </html>

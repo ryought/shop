@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <title>shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <!-- Fonts and CSS Reset -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+</head>
+<body>
+  <main>
+
+    <section class="section-tertiary">
+      <div class="container container-small">
+        <div class="row">
+          <div class="col col-sm-12 col-xlg-12">
+            <h1>ご購入ありがとうございました。</h1>
+            <p>お手元にstripe.comから領収書のメールが届いているかご確認ください。</p>
+            <p>ご購入いただいた商品については、こちらで決済が確認でき次第、メールにてお知らせいたします。</p>
+            <p>何か問題があれば、メール <a href="mailto:ryonakabayashi@gmail.com">ryonakabayashi@gmail.com</a> またはお電話 +81 90-3502-6971 にてお問い合わせください。</p>
+
+
+
+
+            <div class="stepper">
+              <div class="step">
+                <p class="step-number">1</p>
+                <p class="step-title">stripe.comからの領収書のメールをご確認ください</p>
+                <p>すぐに届くはずです。</p>
+              </div>
+              <div class="step">
+                <p class="step-number">2</p>
+                <p class="step-title">商品に関するメールをお待ちください。</p>
+                <p>こちらで決済が確認でき次第、ryonakabayashi@gmail.com より商品に関する詳細が記載されたメールを送信します。</p>
+              </div>
+              <div class="step">
+                <p class="step-number"></p>
+                <p class="step-title">24時間以内に届かない場合</p>
+                <p>なんらかの問題が発生している可能性があります。</p>
+              </div>
+            </div>
+
+
+            <a class="button button-primary" href="/">ホームに戻る</a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container container-small">
+      <div class="row">
+        <div class="col">
+          <div class="footer-text">
+            <p class="h3">Terms</p>
+            <p>hoge</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="copyright align-center">Goppie in the Woods, Ryo Nakabayashi</p>
+  </footer>
+
+  <script src="https://js.stripe.com/v3"></script>
+  <script>
+    var stripe = Stripe('pk_test_OtbO9GrVheYEgIEqNKecUuiO004lkrWPyO');
+    document.getElementById('checkout-button-cd')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
+          successUrl: 'http://localhost:8887/success.html',
+          cancelUrl: 'http://localhost:8887/canceled.html',
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+    document.getElementById('checkout-button-movie')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
+          successUrl: 'http://localhost:8887/success.html',
+          cancelUrl: 'http://localhost:8887/canceled.html',
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+    document.getElementById('checkout-button-party')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
+          successUrl: 'http://localhost:8887/success.html',
+          cancelUrl: 'http://localhost:8887/canceled.html',
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+  </script>
+
+</body>
+</html>
