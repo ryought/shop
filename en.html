@@ -193,8 +193,8 @@
   <script>
     var stripe = Stripe('pk_live_6qtVO9yA6pKryCntpfEBsXc400uZ0AlMTR');
     var env = 'prod'
-    var successUrl = env === 'prod' ? 'https://ryought.app/shop/success.html' : 'http://localhost:8887/success.html'
-    var cancelUrl = env === 'prod' ? 'https://ryought.app/shop/canceled.html' : 'http://localhost:8887/canceled.html'
+    var successUrl = env === 'prod' ? 'https://ryought.app/shop/success_en.html' : 'http://localhost:8887/success_en.html'
+    var cancelUrl = env === 'prod' ? 'https://ryought.app/shop/canceled_en.html' : 'http://localhost:8887/canceled_en.html'
     document.getElementById('checkout-button-cd')
       .addEventListener('click', function () {
         stripe.redirectToCheckout({

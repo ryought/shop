@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <title>shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <!-- Fonts and CSS Reset -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+</head>
+<body>
+  <main>
+
+    <section class="section-tertiary">
+      <div class="container container-small">
+        <div class="row">
+          <div class="col col-sm-12 col-xlg-12">
+            <h1>Thank you for your purchasing!</h1>
+            <p>Please check if you recieved an receipt from stripe.com by email. After we check your purchase, we send you an email with information to download our tracks, video and join our gig event.</p>
+            <p>If you have any trouble or question, please ask by sending an email <a href="mailto:ryonakabayashi@gmail.com">ryonakabayashi@gmail.com</a> or calling +81 90-3502-6971.</p>
+            <a class="button button-primary" href="/shop">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="copyright align-center">Goppie in the Woods, Ryo Nakabayashi</p>
+  </footer>
+
+  <script src="https://js.stripe.com/v3"></script>
+  <script>
+    var stripe = Stripe('pk_test_OtbO9GrVheYEgIEqNKecUuiO004lkrWPyO');
+    document.getElementById('checkout-button-cd')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
+          successUrl: 'http://localhost:8887/success.html',
+          cancelUrl: 'http://localhost:8887/canceled.html',
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+    document.getElementById('checkout-button-movie')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
+          successUrl: 'http://localhost:8887/success.html',
+          cancelUrl: 'http://localhost:8887/canceled.html',
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+    document.getElementById('checkout-button-party')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FMts41zZjNC0bV', quantity: 1}],
+          successUrl: 'http://localhost:8887/success.html',
+          cancelUrl: 'http://localhost:8887/canceled.html',
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+  </script>
+
+</body>
+</html>
