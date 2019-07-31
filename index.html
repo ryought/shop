@@ -191,7 +191,7 @@
         </div>
       </div>
     </div>
-    <p class="copyright align-center">Goppie in the Woods, Ryo Nakabayashi, Shunsuke Ogoshi</p>
+    <p class="copyright align-center">Goppie in the Woods, Ryo Nakabayashi, Shunsuke Ogoshi <a id="checkout-button-special">special</a></p>
   </footer>
 
   <script src="https://js.stripe.com/v3"></script>
@@ -232,6 +232,20 @@
       .addEventListener('click', function () {
         stripe.redirectToCheckout({
           items: [{sku: 'sku_FWY7CVoushqqaE', quantity: 1}],
+          successUrl: successUrl,
+          cancelUrl: cancelUrl,
+        })
+          .then(function (result) {
+            if (result.error) {
+              var displayError = document.getElementById('error-message');
+              displayError.textContent = result.error.message;
+            }
+          });
+      });
+    document.getElementById('checkout-button-special')
+      .addEventListener('click', function () {
+        stripe.redirectToCheckout({
+          items: [{sku: 'sku_FXD930QxKp5hCd', quantity: 1}],
           successUrl: successUrl,
           cancelUrl: cancelUrl,
         })
